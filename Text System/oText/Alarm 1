@@ -1,0 +1,6 @@
+/// @description Unlock letter
+
+current_letter++
+
+if current_letter >= string_length(text[current_text]) alarm[2] = delay.text
+else alarm[1] = delay.letter

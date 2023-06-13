@@ -1,0 +1,4 @@
+/// @description Start
+
+callback.start()
+alarm[1] = delay.letter

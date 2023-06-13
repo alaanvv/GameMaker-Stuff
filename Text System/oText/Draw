@@ -1,0 +1,13 @@
+if !running || !array_length(text) || current_letter == 0 exit
+
+h = font.halign
+v = font.valign
+
+draw_set_font(font.name)
+draw_set_color(font.color)
+draw_set_halign(h)
+draw_set_valign(v)
+
+var unlocked_string = fixed.start + string_copy(text[current_text], 1, current_letter) + fixed.final
+
+draw_text(x, y, unlocked_string)

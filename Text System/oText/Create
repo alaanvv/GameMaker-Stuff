@@ -1,0 +1,47 @@
+text_struct = get_value(self, "text_struct", {})
+font_struct = get_value(self, "font_struct", {})
+delay_struct = get_value(self, "delay_struct", {})
+callback_struct = get_value(self, "callback_struct", {})
+
+// ---
+
+text = get_value(text_struct, "text", [])
+current_text = 0
+current_letter = 0
+
+fixed = {
+	start: get_value(text_struct, "start", ""),
+	final: get_value(text_struct, "final", "")
+}
+
+font = {
+	name: get_value(font_struct, "name", fMainSmaller),
+	color: get_value(font_struct, "color", c_white),
+	halign: get_value(font_struct, "halign", fa_center),
+	valign: get_value(font_struct, "valign", fa_center)
+}
+
+delay = {
+	start: get_value(delay_struct, "start", 1),
+	final: get_value(delay_struct, "final", 1),
+	letter: get_value(delay_struct, "letter", 1),
+	text: get_value(delay_struct, "text", 1)
+}
+
+callback = {
+	start: get_value(callback_struct, "start", function() {}),
+	text: get_value(callback_struct, "text", function() {}),
+	final: get_value(callback_struct, "final", function() {})
+}
+	
+alarm[0] = delay.start
+running = true
+
+function skip() {
+	if !running { return }
+	
+	if current_letter < string_length(text[current_text]) {
+		current_letter = string_length(text[current_text])
+		alarm[1] = 1
+	} else { alarm[2] = 1 }
+}

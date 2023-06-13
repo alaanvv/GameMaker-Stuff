@@ -1,0 +1,13 @@
+/// @description Next text
+
+current_text++
+current_letter = 0
+
+if current_text >= array_length(text) {
+	alarm[3] = delay.final
+	running = false
+}
+else {
+	callback.text(current_text)
+	alarm[1] = 1
+}

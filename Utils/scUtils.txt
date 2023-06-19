@@ -1,0 +1,60 @@
+// Return a random value between a and b, and if no b is sent, between 0 and a
+function rand(a, b = undefined) {
+	if (b) return random_range(a, b)
+	else return random(a)
+}
+	
+// Return a random integer value between a and b, and if no b is sent, between 0 and a
+function irand(a, b = undefined) {
+	if (b) return irandom_range(a, b)
+	else return irandom(a)
+}
+
+// Returns a random integer between -x and x
+function randabs(x) {
+	return random_range(-x, x)
+}
+
+// Changes X and Y scale
+function scale(obj, value) {
+	with (obj) {
+		image_xscale = value
+		image_yscale = value
+	}
+}
+
+// Follow X and Y of an object
+function follow(obj, follow_obj) {
+	with (obj) {
+		x = follow_obj.x
+		y = follow_obj.y
+	}
+}
+
+// Execute a function for each instance of an object
+function iterate_instances(me, obj, func) {
+	for (var i = 0; i < instance_number(obj); i++) {
+		func(me, instance_find(obj, i))
+	}
+}
+
+// Shortcut for instance_exists + instance_destroy
+function destroy_if_exists(obj) {
+	if instance_exists(obj) instance_destroy(obj)
+}
+
+// Get a value from a struct with a default value
+function get_value(object, key, default_value = undefined) {
+	return variable_instance_exists(object, key) ? variable_struct_get(object, key) : default_value
+}
+
+// Do nothing
+function void(arg = undefined) {
+	return arg
+}
+
+// Shortcut for show_message and show_debug_message
+function print(value, alert = false) {
+	if !alert show_debug_message(value)
+	else show_message(value)
+}
